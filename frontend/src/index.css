@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after {
+    @apply box-border;
+  }
+  
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply font-inter antialiased transition-colors duration-300;
+    margin: 0;
+    min-height: 100vh;
+  }
+  
+  /* Dark theme by default */
+  :root {
+    --bg-primary: theme('colors.neutral.900');
+    --bg-secondary: theme('colors.neutral.800');
+    --text-primary: theme('colors.neutral.50');
+    --text-secondary: theme('colors.neutral.300');
+    --accent: theme('colors.primary.500');
+  }
+  
+  /* Light theme */
+  .light {
+    --bg-primary: theme('colors.neutral.50');
+    --bg-secondary: theme('colors.neutral.100');
+    --text-primary: theme('colors.neutral.900');
+    --text-secondary: theme('colors.neutral.700');
+    --accent: theme('colors.primary.600');
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg;
+  }
+  
+  .btn-secondary {
+    @apply border-2 border-primary-500 text-primary-400 hover:bg-primary-500 hover:text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300;
+  }
+  
+  .glass-card {
+    @apply bg-gray-800/50 backdrop-blur-lg border border-gray-700/50 rounded-xl shadow-xl;
+  }
+  
+  .section-container {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent;
+  }
+  
+  /* Section spacing utilities */
+  .section-spacing {
+    @apply py-20 md:py-28 lg:py-32;
+  }
+  
+  .section-spacing-large {
+    @apply py-28 md:py-36 lg:py-44;
+  }
+  
+  .section-spacing-small {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+  
+  /* Content spacing utilities */
+  .content-spacing {
+    @apply space-y-8 md:space-y-12 lg:space-y-16;
+  }
+  
+  .content-spacing-large {
+    @apply space-y-12 md:space-y-16 lg:space-y-24;
+  }
+  
+  .content-spacing-small {
+    @apply space-y-4 md:space-y-6 lg:space-y-8;
+  }
+  
+  /* Margin utilities */
+  .margin-section {
+    @apply mb-16 md:mb-20 lg:mb-24;
+  }
+  
+  .margin-content {
+    @apply mb-8 md:mb-12 lg:mb-16;
+  }
+  
+  /* Noise overlay */
+  .noise-overlay {
+    @apply relative;
+  }
+  
+  .noise-overlay::before {
+    content: '';
+    @apply absolute inset-0 opacity-[0.015] pointer-events-none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+  
+  /* Gradient borders */
+  .gradient-border {
+    @apply relative;
+  }
+  
+  .gradient-border::before {
+    content: '';
+    @apply absolute inset-0 rounded-[inherit] p-[1px] bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+  }
+  
+  /* Neon text effect */
+  .neon-text {
+    @apply text-primary-400;
+    text-shadow: 0 0 5px theme('colors.primary.500'), 0 0 10px theme('colors.primary.500'), 0 0 15px theme('colors.primary.500');
+  }
+  
+  .bg-gradient-mesh {
+    background: linear-gradient(-45deg, #1e1b4b, #312e81, #1e40af, #1e3a8a);
+    background-size: 400% 400%;
+    animation: gradient-xy 15s ease infinite;
+  }
+  
+  .bg-gradient-mesh-light {
+    background: linear-gradient(-45deg, #f8fafc, #e2e8f0, #cbd5e1, #94a3b8);
+    background-size: 400% 400%;
+    animation: gradient-xy 15s ease infinite;
+  }
+  
+  .bg-gradient-mesh-dark {
+    background: linear-gradient(-45deg, #1e1b4b, #312e81, #1e40af, #1e3a8a);
+    background-size: 400% 400%;
+    animation: gradient-xy 15s ease infinite;
+  }
+}
+
+@keyframes gradient-xy {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+}
